@@ -1,6 +1,5 @@
-from app.utils.currency_data import get_currency_name
-from app.utils.cache_data import get_cache_contents
-
+from app.utils import get_cache_contents, get_currency_name
+from app.models import CurrencyResponse, ErrorResponse
 
 def get_all_currency_names(cache):
     """
@@ -10,16 +9,25 @@ def get_all_currency_names(cache):
     - cache: O objeto de cache onde os dados estão armazenados.
 
     Returns:
-    Um dicionário contendo as siglas de moeda como chaves e os nomes humanos correspondentes como valores.
+    Um objeto CurrencyResponse contendo as siglas de moeda como chaves e os nomes humanos correspondentes como valores,
+    ou um objeto ErrorResponse em caso de falha.
     """
-    all_currency_names = {}
-    cached_contents = get_cache_contents(cache)
+    try:
+        cached_contents = get_cache_contents(cache)
+        if cached_contents is None:
+            raise ValueError("Cache is empty or inaccessible.")
 
-    if cached_contents:
+        all_currency_names = {}
         currency_codes = [key for key in cached_contents.keys()]
         
         for currency_code in currency_codes:
             currency_name = get_currency_name(currency_code)
-            all_currency_names[currency_code] = currency_name
+            if currency_name:
+                all_currency_names[currency_code] = currency_name
+            else:
+                # Considerando a possibilidade de não conseguir obter o nome de alguma moeda específica
+                all_currency_names[currency_code] = "Unknown"
 
-    return all_currency_names
+        return CurrencyResponse(all_currency_names)
+    except Exception as e:
+        return ErrorResponse(str(e))

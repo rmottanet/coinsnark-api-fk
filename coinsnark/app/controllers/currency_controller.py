@@ -1,14 +1,22 @@
 from flask import Blueprint, jsonify
 from app.services.currency_service import get_all_currency_names
+from app.models import ErrorResponse
 
-# Definindo o blueprint
 currency_bp = Blueprint('currency', __name__)
 
-# Definindo endpoint para lista de moedas
 @currency_bp.route('/api/currency', methods=["GET"])
 def currency_ctrl():
-    # returns currencies code
+
     from app import cache
+
+    response = get_all_currency_names(cache)
     
-    currencies = get_all_currency_names(cache)
-    return jsonify(currencies), 200
+    # if fails response
+    if isinstance(response, ErrorResponse):
+        return jsonify({"error": response.error_message}), 400
+    elif response is None:
+        # anything fails
+        error_response = ErrorResponse("An unexpected error occurred")
+        return jsonify({"error": error_response.error_message}), 500
+    else:
+        return jsonify(response.to_json()), 200

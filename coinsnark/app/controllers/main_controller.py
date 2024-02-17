@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, render_template
 
 # Definindo o blueprint
 main_bp = Blueprint('main', __name__)
@@ -6,4 +6,4 @@ main_bp = Blueprint('main', __name__)
 # Rota principal
 @main_bp.route('/')
 def index():
-    return 'Coin Snark API API <br> <a href="https://rmottanet.gitbook.io/coinsnark">Documentação</a>'
+    return render_template('index.html')
