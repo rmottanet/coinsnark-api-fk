@@ -1,4 +1,4 @@
-from app.models import ApiResponse
+from coinsnark.app.models import ApiResponse
 
 class CurrencyResponse:
     def __init__(self, currency_data):

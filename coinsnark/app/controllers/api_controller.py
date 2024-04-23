@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify
-from app.models import ApiResponse, ErrorResponse
+from coinsnark.app.models import ApiResponse, ErrorResponse
 
 api_bp = Blueprint('api', __name__)
 

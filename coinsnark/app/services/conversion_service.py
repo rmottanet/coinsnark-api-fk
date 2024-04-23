@@ -1,6 +1,6 @@
 from datetime import datetime
-from app.utils import get_exchange_rate
-from app.models import ConversionResponse, ErrorResponse
+from coinsnark.app.utils import get_exchange_rate
+from coinsnark.app.models import ConversionResponse, ErrorResponse
 
 def convert_currency(cache, from_currency, to_currency, amount):
     """

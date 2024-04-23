@@ -1,5 +1,5 @@
-from app.models.error_model import ErrorResponse
-from app.utils import validate_currency_code, validate_amount
+from coinsnark.app.models.error_model import ErrorResponse
+from coinsnark.app.utils import validate_currency_code, validate_amount
 
 class CurrencyValidationMiddleware:
     def validate_request(self):

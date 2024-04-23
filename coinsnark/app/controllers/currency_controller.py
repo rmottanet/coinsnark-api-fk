@@ -1,13 +1,13 @@
 from flask import Blueprint, jsonify
-from app.services.currency_service import get_all_currency_names
-from app.models import ErrorResponse
+from coinsnark.app.services.currency_service import get_all_currency_names
+from coinsnark.app.models import ErrorResponse
 
 currency_bp = Blueprint('currency', __name__)
 
 @currency_bp.route('/api/currency', methods=["GET"])
 def currency_ctrl():
 
-    from app import cache
+    from coinsnark.app import cache
 
     response = get_all_currency_names(cache)
     
