@@ -1,5 +1,5 @@
-from app.utils import get_cache_contents, get_currency_name
-from app.models import CurrencyResponse, ErrorResponse
+from coinsnark.app.utils import get_cache_contents, get_currency_name
+from coinsnark.app.models import CurrencyResponse, ErrorResponse
 
 def get_all_currency_names(cache):
     """

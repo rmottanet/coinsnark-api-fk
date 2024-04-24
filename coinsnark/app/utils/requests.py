@@ -1,9 +1,17 @@
+import time
 import requests
 
-def fetch_data(url):
-    try:
-        response = requests.get(url)
-        response.raise_for_status()
-        return response.content
-    except requests.exceptions.RequestException as e:
-        raise RuntimeError(f"Erro ao fazer requisição HTTP: {e}")
+def fetch_data(url, max_retries=3, delay=5):
+    retries = 0
+    while retries < max_retries:
+        try:
+            response = requests.get(url)
+            response.raise_for_status()
+            return response.content
+        except requests.exceptions.HTTPError:
+            retries += 1
+            if retries < max_retries:
+                print(f"Retrying after {delay} seconds...")
+                time.sleep(delay)
+            else:
+                raise RuntimeError("Max retries exceeded. Unable to fetch data.")

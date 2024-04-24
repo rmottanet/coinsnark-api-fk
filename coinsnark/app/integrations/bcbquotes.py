@@ -1,8 +1,8 @@
 import json
 import logging
 from urllib.parse import urlencode
-from app.utils.requests import fetch_data
-from app.utils.cache_data import save_data_to_cache
+from coinsnark.app.utils.requests import fetch_data
+from coinsnark.app.utils.cache_data import save_data_to_cache
 
 class BCBQuotes:
     @staticmethod

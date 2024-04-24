@@ -1,4 +1,4 @@
-from app.models import ApiResponse
+from coinsnark.app.models import ApiResponse
 
 class ErrorResponse:
     def __init__(self, message, status_code=400):
