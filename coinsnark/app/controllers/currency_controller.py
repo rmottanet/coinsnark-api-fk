@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from flask import Blueprint, jsonify
 from coinsnark.app.services.currency_service import get_all_currency_names
 from coinsnark.app.models import ErrorResponse
@@ -19,4 +20,4 @@ def currency_ctrl():
         error_response = ErrorResponse("An unexpected error occurred")
         return jsonify({"error": error_response.error_message}), 500
     else:
-        return jsonify(response.to_json()), 200
+        return jsonify(response.to_json()), 200, {'Content-Type': 'application/json; charset=utf-8'}
