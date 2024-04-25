@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from datetime import datetime
 from coinsnark.app.utils import get_exchange_rate
 from coinsnark.app.models import ConversionResponse, ErrorResponse

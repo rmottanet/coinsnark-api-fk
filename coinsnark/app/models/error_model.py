@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from coinsnark.app.models import ApiResponse
 
 class ErrorResponse:
