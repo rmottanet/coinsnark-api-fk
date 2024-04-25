@@ -1,11 +1,15 @@
+# -*- coding: utf-8 -*-
 import time
 import requests
 
-def fetch_data(url, max_retries=3, delay=5):
+def fetch_data(url, max_retries=3, delay=5, headers=None):
     retries = 0
     while retries < max_retries:
         try:
-            response = requests.get(url)
+            if headers:
+                response = requests.get(url, headers=headers)
+            else:
+                response = requests.get(url)
             response.raise_for_status()
             return response.content
         except requests.exceptions.HTTPError:
