@@ -22,5 +22,5 @@ python-dotenv==1.0.1
 requests==2.32.0
 tomli==2.0.1
 urllib3==2.2.2
-Werkzeug==3.0.3
+Werkzeug==3.0.6
 zipp==3.19.1
